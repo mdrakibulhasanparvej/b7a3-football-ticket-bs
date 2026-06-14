@@ -111,3 +111,13 @@ FROM Bookings
 WHERE total_cost >(SELECT AVG(total_cost) FROM Bookings);
 
 
+-- Query 7: Top 2 most expensive matches, skipping the absolute highest (LIMIT + OFFSET)
+
+
+SELECT 
+    match_id,
+    fixture,
+    base_ticket_price::numeric::int AS price
+FROM matches
+ORDER BY base_ticket_price desc
+LIMIT 2 OFFSET 1;
